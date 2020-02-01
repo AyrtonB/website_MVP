@@ -6,5 +6,9 @@ app = Flask(__name__)
 def home():
     return render_template("home.html", img_url='../static/img/pipeline.jpg')
 
+@app.route("/map")
+def map():
+    return render_template("map.html", img_url='../static/img/boiling_bubbles.jpg')
+
 if __name__ == "__main__":
     app.run(debug=True)
