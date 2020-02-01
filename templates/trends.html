@@ -60,7 +60,7 @@
 
     </div>
     <div id="users">
-        {% include 'components/map_comp.html' %}
+        <div id="mapid"></div>
     </div>
   </div>
 </div>
@@ -292,5 +292,7 @@ chart_bottom.append("path")
 
   <br>
   </div>
+
+  {% include 'components/map_comp.html' %}
 
   {% endblock %}
