@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("home.html", img_url='../static/img/pipeline.jpg')
+    return render_template("trends.html", img_url='../static/img/pipeline.jpg')
 
 @app.route("/map")
 def map():
