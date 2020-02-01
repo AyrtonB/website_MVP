@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>Home</title>
+  <style>
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+#contain {
+  display: flex;
+  max-width: 1700px; /* or inline-flex */
+}
+</style>
+ 
+</head>
+
+<body>
+  {% extends "header.html" %}
+  {% block content %}
+
+  <!-- Navigation -->
+  {% include 'components/navbar.html' %}
+
+  <!-- Page Header -->
+  {% include 'components/masthead.html' %}
+
+<div margin="60px"> <p>Region: <input value="Teeside"> </input>  <button class="btn btn-primary" type="submit">Search</button> </p>
+<div  class="container" id="contain">
+<div id="sales" class="col" >  
+  <div id="tabs" width="100%">
+  <ul>
+    <li><a href="#buy">Buy</a></li>
+    <li><a href="#sell">Sell</a></li>
+    <li><a href="#users">Users</a></li>
+  </ul>
+    <div id="buy">
+
+<table class="table table-striped">  <thead class="thead-dark">    <tr style="text-align: right;">      <th></th>      <th>name</th>      <th>ID</th>      <th>temperature</th>      <th>start_time_UTC</th>      <th>end_time_UTC</th>      <th>volume</th>      <th>buy_price_total</th>    </tr>  </thead>  <tbody>    
+<tr>      <th>0</th>      <td>Tees Valley Hospital</td>      <td>00002</td>      <td>100</td>      <td>2019-02-01T12:00g</td>      <td>2019-02-01T18:00</td>      <td>5000</td>      <td>20000</td>  <td> <button class="btn btn-primary" type="submit">Fulfill</button> </td> </tr>    
+<tr>      <th>1</th>      <td>Tees Valley Hospital</td>      <td>00002</td>      <td>100</td>      <td>2019-02-01T18:00g</td>      <td>2019-02-01T122:00</td>      <td>1000</td>      <td>2000</td>  <td>  <button class="btn btn-primary" type="submit">Fulfill</button> </td>  </tr>  </tbody></table>
+
+
+
+    </div>
+    <div id="sell">
+
+<table  class="table table-striped ">  <thead class="thead-dark">    <tr style="text-align: right;">      <th></th>      <th>name</th>      <th>ID</th>      <th>temperature</th>      <th>start_time_UTC</th>      <th>end_time_UTC</th>      <th>volume</th>      <th>waste_percent</th>      <th>asking_price_total</th>    </tr>  </thead>  <tbody>    <tr>      <th>0</th>      <td>PharmaCorp</td>      <td>00001</td>      <td>100</td>      <td>2019-02-01T12:00</td>      <td>2019-02-01T13:00</td>      <td>1000</td>      <td>10</td>      <td>4000</td> <td>  <button class="btn btn-primary" type="submit">Buy</button> </td>   </tr>    <tr>      <th>1</th>      <td>PharmaCorp</td>      <td>00001</td>      <td>100</td>      <td>2019-02-01T14:00</td>      <td>2019-02-01T15:00</td>      <td>1000</td>      <td>20</td>      <td>4000</td>   <td>  <button class="btn btn-primary" type="submit">Buy</button> </td>  </tr>    <tr>      <th>2</th>      <td>PharmaCorp</td>      <td>00001</td>      <td>100</td>      <td>2019-02-01T15:00</td>      <td>2019-02-01T16:00</td>      <td>1000</td>      <td>20</td>      <td>3500</td>  <td>  <button class="btn btn-primary" type="submit">Buy</button> </td>   </tr>    <tr>      <th>3</th>      <td>PharmaCorp</td>      <td>00001</td>      <td>100</td>      <td>2019-02-01T16:00</td>      <td>2019-02-01T17:00</td>      <td>1000</td>      <td>10</td>      <td>4000</td>   <td>  <button class="btn btn-primary" type="submit">Buy</button> </td>  </tr>    <tr>      <th>4</th>      <td>PharmaCorp</td>      <td>00001</td>      <td>100</td>      <td>2019-02-01T17:00</td>      <td>2019-02-01T18:00</td>      <td>1000</td>      <td>10</td>      <td>3600</td>  <td>  <button class="btn btn-primary" type="submit">Buy</button> </td>   </tr>  </tbody></table>
+
+    </div>
+    <div id="users">
+        {% include 'components/map_comp.html' %}
+    </div>
+  </div>
+</div>
+<div class="col" >
+  <div>Statistics</div>
+  Regional
+  <svg id="svg-top" width="100%" height="300px"/>
+  Personal
+  <svg id="svg_bottom" width="100%" height="300px"/>
+</div>
+  <script>
+
+const sample = [
+   {
+      "date":"01-01-2018",
+      "value":10
+   
+},
+   {
+      "date":"02-01-2018",
+      "value":20
+   
+},
+   {
+      "date":"03-01-2018",
+      "value":40
+   
+},
+   {
+      "date":"04-01-2018",
+      "value":40
+   
+},  
+{
+      "date":"05-01-2018",
+      "value":40
+   
+},
+   {
+      "date":"06-01-2018",
+      "value":40
+   
+},
+   {
+      "date":"07-01-2018",
+      "value":40
+   
+},  
+{
+      "date":"08-01-2018",
+      "value":80
+   
+},
+   {
+      "date":"09-01-2018",
+      "value":100
+   
+},
+   {
+      "date":"10-01-2018",
+      "value":100
+   
+},  
+{
+      "date":"11-01-2018",
+      "value":100
+   
+},
+   {
+      "date":"12-01-2018",
+      "value":100
+   
+}
+
+];
+
+const sample_bottom = [
+   {
+      "date":"01-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"02-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"03-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"04-01-2018",
+      "value":0
+   
+},  
+{
+      "date":"05-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"06-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"07-01-2018",
+      "value":0
+   
+},  
+{
+      "date":"08-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"09-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"10-01-2018",
+      "value":20
+   
+},  
+{
+      "date":"11-01-2018",
+      "value":20
+   
+},
+   {
+      "date":"12-01-2018",
+      "value":20
+   
+}
+
+];
+
+
+var parseTime = d3.timeParse("%d-%m-%Y")
+ sample.forEach(function(d) {
+      d.date = parseTime(d.date);
+      console.log (d);
+  });
+
+  sample_bottom.forEach(function(d) {
+      d.date = parseTime(d.date);
+      console.log (d);
+  });
+
+
+
+const margin = 60;
+const width = 600 - 2 * margin;
+const height = 300 - 2 * margin;
+
+const svg = d3.select('#svg-top');
+
+svg.append('text')
+    .attr('x', width / 2 + margin)
+    .attr('y', 40)
+    .attr('text-anchor', 'middle')
+    .text('Regional CO2 reduction tonnes per day')
+const chart = svg.append('g')
+    .attr('transform', `translate(${margin}, ${margin})`);
+const yScale = d3.scaleLinear()
+    .range([height, 0])
+    .domain([0, 100]);
+chart.append('g')
+    .call(d3.axisLeft(yScale));
+const xScale = d3.scaleTime()
+    .range([0,width])
+    .domain(d3.extent(sample, function(d) { return d.date;}))
+
+chart.append('g')
+    .attr('transform', `translate(0, ${height})`)
+    .call(d3.axisBottom(xScale));
+
+
+var line = d3.line()
+    .x(function(d) { return xScale(d.date); }) // set the x values for the line generator
+    .y(function(d) { return yScale(d.value); }) // set the y values for the line generator 
+    .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+chart.append("path")
+    .datum(sample) // 10. Binds data to the line 
+    .attr("class", "line") // Assign a class for styling 
+    .attr("d", line); // 11. Calls the line generator 
+
+const svg_bottom = d3.select('#svg_bottom');
+
+svg_bottom.append('text')
+    .attr('x', width / 2 + margin)
+    .attr('y', 40)
+    .attr('text-anchor', 'middle')
+    .text('Personal CO2 reduction tonnes per day')
+
+
+const chart_bottom = svg_bottom.append('g')
+    .attr('transform', `translate(${margin}, ${margin})`);
+const yScale_bottom = d3.scaleLinear()
+    .range([height, 0])
+    .domain([0, 100]);
+chart_bottom.append('g')
+    .call(d3.axisLeft(yScale_bottom));
+const xScale_bottom = d3.scaleTime()
+    .range([0,width])
+    .domain(d3.extent(sample_bottom, function(d) { return d.date;}))
+
+chart_bottom.append('g')
+    .attr('transform', `translate(0, ${height})`)
+    .call(d3.axisBottom(xScale_bottom));
+
+
+var line = d3.line()
+    .x(function(d) { return xScale_bottom(d.date); }) // set the x values for the line generator
+    .y(function(d) { return yScale_bottom(d.value); }) // set the y values for the line generator 
+    .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+chart_bottom.append("path")
+    .datum(sample_bottom) // 10. Binds data to the line 
+    .attr("class", "line") // Assign a class for styling 
+    .attr("d", line); // 11. Calls the line generator 
+ 
+
+  </script>
+
+  <br>
+  </div>
+
+  {% endblock %}

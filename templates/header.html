@@ -15,7 +15,15 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  </script>
     
     <link rel="stylesheet" href="/static/js/leaflet.css" />
     <script src="/static/js/leaflet.js"></script> 
@@ -31,6 +39,6 @@
 
   <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}">
-
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </html>
 

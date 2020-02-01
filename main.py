@@ -11,6 +11,11 @@ def home():
 def map():
     return render_template("map.html", img_url='../static/img/boiling_bubbles.jpg')
 
+@app.route("/trends")
+def trends():
+    return render_template("trends.html", img_url='../static/img/boiling_bubbles.jpg')
+
+
 @app.route("/data")
 def data():
     with open('static/data/test.json', 'r') as f:
