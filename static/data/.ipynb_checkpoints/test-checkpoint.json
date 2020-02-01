@@ -1,0 +1,10 @@
+{"displayFieldName":"site_name",
+ "geometryType":"esriGeometryPoint",
+ "spatialReference":{"wkid":4326,"latestWkid":4326},
+ "features":[{
+     "attributes":{ 
+         "index":1,
+         "site_id":"EsbChargePoint_ChargePointESB-UT077K (Taxi-Only)"},
+     "geometry":{"x":0.08729,"y":51.586867}
+ }]
+}
