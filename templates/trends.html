@@ -47,8 +47,8 @@
     <div id="buy">
 
 <table class="table table-striped">  <thead class="thead-dark">    <tr style="text-align: right;">      <th></th>      <th>name</th>      <th>ID</th>      <th>temperature</th>      <th>start_time_UTC</th>      <th>end_time_UTC</th>      <th>volume</th>      <th>buy_price_total</th>    </tr>  </thead>  <tbody>    
-<tr>      <th>0</th>      <td>Tees Valley Hospital</td>      <td>00002</td>      <td>100</td>      <td>2019-02-01T12:00g</td>      <td>2019-02-01T18:00</td>      <td>5000</td>      <td>20000</td>  <td> <button class="btn btn-primary" type="submit">Fulfil</button> </td> </tr>    
-<tr>      <th>1</th>      <td>Tees Valley Hospital</td>      <td>00002</td>      <td>100</td>      <td>2019-02-01T18:00g</td>      <td>2019-02-01T122:00</td>      <td>1000</td>      <td>2000</td>  <td>  <button class="btn btn-primary" type="submit">Fulfil</button> </td>  </tr>  </tbody></table>
+<tr>      <th>0</th>      <td>Tees Valley Hospital</td>      <td>00002</td>      <td>100</td>      <td>2019-02-01T12:00g</td>      <td>2019-02-01T18:00</td>      <td>5000</td>      <td>20000</td>  <td> <button class="btn btn-primary" type="submit">Fulfill</button> </td> </tr>    
+<tr>      <th>1</th>      <td>Tees Valley Hospital</td>      <td>00002</td>      <td>100</td>      <td>2019-02-01T18:00g</td>      <td>2019-02-01T122:00</td>      <td>1000</td>      <td>2000</td>  <td>  <button class="btn btn-primary" type="submit">Fulfill</button> </td>  </tr>  </tbody></table>
 
 
 
@@ -59,6 +59,7 @@
 
     </div>
     <div id="users">
+        {% include 'components/map_comp.html' %}
     </div>
   </div>
 </div>
