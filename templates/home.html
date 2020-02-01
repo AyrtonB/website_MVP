@@ -20,42 +20,6 @@
   <!-- Page Header -->
   {% include 'components/masthead.html' %}
 
-  <style>
-  #my-map {
-    width:960px;
-    height:500px;
-  }
-
-  </style>
-  </head>
-
-  <body>
-    <div id="my-map"></div>
-  <script>
-  window.onload = function () {
-      var basemap = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    });
-
-      $.getJSON("static/data/test.json", function(data) {
-
-      var geojson = L.geoJson(data, {
-        onEachFeature: function (feature, layer) {
-          layer.bindPopup(feature.properties.Area_Name);
-        }
-      });
-
-      var map = L.map('my-map')
-      .fitBounds(geojson.getBounds());
-  //    .setView([0.0,-10.0], 2);
-
-      basemap.addTo(map);
-      geojson.addTo(map);
-    });
-
-  };
-  </script>
-
   <br>
   
 
