@@ -19,7 +19,7 @@
 
 #contain {
   display: flex;
-  max-width: 1920px; /* or inline-flex */
+  max-width: 1700px; /* or inline-flex */
 }
 </style>
  
@@ -35,7 +35,7 @@
   <!-- Page Header -->
   {% include 'components/masthead.html' %}
 
-<div> <p>Region: <input value="Teeside"> </input>  <button class="btn btn-primary" type="submit">Search</button> </p><div>
+<div margin="60px"> <p>Region: <input value="Teeside"> </input>  <button class="btn btn-primary" type="submit">Search</button> </p>
 <div  class="container" id="contain">
 <div id="sales" class="col" >  
   <div id="tabs" width="100%">
@@ -64,8 +64,9 @@
 </div>
 <div class="col" >
   <div>Statistics</div>
-  Carbon
+  Regional
   <svg id="svg-top" width="100%" height="300px"/>
+  Personal
   <svg id="svg_bottom" width="100%" height="300px"/>
 </div>
   <script>
@@ -90,9 +91,114 @@ const sample = [
       "date":"04-01-2018",
       "value":40
    
+},  
+{
+      "date":"05-01-2018",
+      "value":40
+   
+},
+   {
+      "date":"06-01-2018",
+      "value":40
+   
+},
+   {
+      "date":"07-01-2018",
+      "value":40
+   
+},  
+{
+      "date":"08-01-2018",
+      "value":80
+   
+},
+   {
+      "date":"09-01-2018",
+      "value":100
+   
+},
+   {
+      "date":"10-01-2018",
+      "value":100
+   
+},  
+{
+      "date":"11-01-2018",
+      "value":100
+   
+},
+   {
+      "date":"12-01-2018",
+      "value":100
+   
 }
 
 ];
+
+const sample_bottom = [
+   {
+      "date":"01-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"02-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"03-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"04-01-2018",
+      "value":0
+   
+},  
+{
+      "date":"05-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"06-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"07-01-2018",
+      "value":0
+   
+},  
+{
+      "date":"08-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"09-01-2018",
+      "value":0
+   
+},
+   {
+      "date":"10-01-2018",
+      "value":20
+   
+},  
+{
+      "date":"11-01-2018",
+      "value":20
+   
+},
+   {
+      "date":"12-01-2018",
+      "value":20
+   
+}
+
+];
+
 
 var parseTime = d3.timeParse("%d-%m-%Y")
  sample.forEach(function(d) {
@@ -100,11 +206,24 @@ var parseTime = d3.timeParse("%d-%m-%Y")
       console.log (d);
   });
 
+  sample_bottom.forEach(function(d) {
+      d.date = parseTime(d.date);
+      console.log (d);
+  });
+
+
+
 const margin = 60;
-const width = 1000 - 2 * margin;
+const width = 600 - 2 * margin;
 const height = 300 - 2 * margin;
 
 const svg = d3.select('#svg-top');
+
+svg.append('text')
+    .attr('x', width / 2 + margin)
+    .attr('y', 40)
+    .attr('text-anchor', 'middle')
+    .text('Regional CO2 reduction tonnes per day')
 const chart = svg.append('g')
     .attr('transform', `translate(${margin}, ${margin})`);
 const yScale = d3.scaleLinear()
@@ -132,6 +251,14 @@ chart.append("path")
     .attr("d", line); // 11. Calls the line generator 
 
 const svg_bottom = d3.select('#svg_bottom');
+
+svg_bottom.append('text')
+    .attr('x', width / 2 + margin)
+    .attr('y', 40)
+    .attr('text-anchor', 'middle')
+    .text('Personal CO2 reduction tonnes per day')
+
+
 const chart_bottom = svg_bottom.append('g')
     .attr('transform', `translate(${margin}, ${margin})`);
 const yScale_bottom = d3.scaleLinear()
@@ -141,11 +268,11 @@ chart_bottom.append('g')
     .call(d3.axisLeft(yScale_bottom));
 const xScale_bottom = d3.scaleTime()
     .range([0,width])
-    .domain(d3.extent(sample, function(d) { return d.date;}))
+    .domain(d3.extent(sample_bottom, function(d) { return d.date;}))
 
-chart.append('g')
+chart_bottom.append('g')
     .attr('transform', `translate(0, ${height})`)
-    .call(d3.axisBottom(xScale));
+    .call(d3.axisBottom(xScale_bottom));
 
 
 var line = d3.line()
@@ -154,7 +281,7 @@ var line = d3.line()
     .curve(d3.curveMonotoneX) // apply smoothing to the line
 
 chart_bottom.append("path")
-    .datum(sample) // 10. Binds data to the line 
+    .datum(sample_bottom) // 10. Binds data to the line 
     .attr("class", "line") // Assign a class for styling 
     .attr("d", line); // 11. Calls the line generator 
  
@@ -162,8 +289,6 @@ chart_bottom.append("path")
   </script>
 
   <br>
-  
+  </div>
 
   {% endblock %}
-</body>
-</html>

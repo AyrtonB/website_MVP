@@ -5,13 +5,13 @@ header.masthead {
   background-attachment: scroll;
   position: relative;
   background-size: cover;
+  height: 175px;
 }
 
 header.masthead .overlay {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
   background-color: #212529;
   opacity: 0.5;
@@ -20,7 +20,7 @@ header.masthead .overlay {
 header.masthead .page-heading,
 header.masthead .post-heading,
 header.masthead .site-heading {
-  padding: 200px 0 150px;
+  padding: 20px 0 20px;
   color: white;
 }
 
@@ -28,7 +28,7 @@ header.masthead .site-heading {
   header.masthead .page-heading,
   header.masthead .post-heading,
   header.masthead .site-heading {
-    padding: 200px 0;
+    padding: 35px 0;
   }
 }
 
