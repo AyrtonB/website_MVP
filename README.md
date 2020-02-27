@@ -4,7 +4,7 @@ This site was developed as part of the OFGEM organised climate energy hackathon 
 
 Our group was developing an MVP for a trading exchange to facilitate heating network connections and trades.
 
-
+<br>
 
 ### Activating the Virtual Environment
 Go to the top directory inside the repository and run
